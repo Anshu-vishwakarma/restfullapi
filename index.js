@@ -9,12 +9,23 @@ app.get('/',(req,res)=>{
      res.send("server is on")
 })
 // connect to db
-mongoose.Promise = global.Promise
-mongoose.connect(
-  process.env.MONGODB_URL,
-  { useUnifiedTopology: true, useNewUrlParser: true },
-  () => console.log("connected to db")
-);
+// mongoose.Promise = global.Promise
+
+
+var mydb;
+var uri = process.env.MONGODB_URL;
+var promise = mongooose.connect(uri,{
+      useMongoClient: true,
+});
+promise.openUri(uri,function(errr,db){
+if(errr){
+        throw errr;
+      }else{
+        console.log("Connection Successfull");      
+        mydb = db;
+        console.log(mydb)
+      }
+});
 
 // Import routes
 const userdataRoutes = require("./routes/userdata");
