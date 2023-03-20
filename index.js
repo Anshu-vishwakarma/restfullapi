@@ -9,7 +9,7 @@ app.get('/',(req,res)=>{
      res.send("server is on")
 })
 // connect to db
-
+mongoose.Promise = global.Promise
 mongoose.connect(
   process.env.MONGODB_URL,
   { useUnifiedTopology: true, useNewUrlParser: true },
