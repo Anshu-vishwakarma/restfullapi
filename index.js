@@ -14,7 +14,7 @@ app.get('/',(req,res)=>{
 
 var mydb;
 var uri = process.env.MONGODB_URL;
-var promise = mongooose.connect(uri,{
+var promise = mongoose.connect(uri,{
       useMongoClient: true,
 });
 promise.openUri(uri,function(errr,db){
